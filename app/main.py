@@ -20,7 +20,7 @@ class BaseRobot:
         else:
             print("Wrong instruction")
     def get_info(self) -> str:
-        return f"Robot: {name}, Weight: {weight}"
+        return f"Robot: {self.name}, Weight: {self.weight}"
 
 class FlyingRobot(BaseRobot):
     def __init__(self, name: str, weight: int, coords: tuple(int, int, int)) -> None:
@@ -28,8 +28,18 @@ class FlyingRobot(BaseRobot):
         self.coords = [0,0,0]
 
     def move(self) -> None:
-        if self.coords = go_up:
+        if self.coords == "go_up":
             coords.z += 1
-        elif self.coords = go_down:
+        elif self.coords == "go_down":
             coords.z -= 1
+
+    def hook_load(self, cargo: Cargo) -> None:
+        if self.current_cargo is None:
+            if cargo.weight <= self.max_load:
+                self.current_cargo = cargo
+                print(f"Cargo hooked! Weight: {cargo.weight}")
+            else:
+                print("Cargo too heavy!")
+        else:
+            print("Already carrying cargo!")
 
